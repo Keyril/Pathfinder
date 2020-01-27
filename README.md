@@ -1,4 +1,7 @@
 # Pathfinder
+NOTE: This is a personal project for learning more about pathfinding and optimization and not a complete application - there will definetely be bugs. Although watching the pathfinding algorithm simulation is interesting, there are visual improvements that can be made to the rest of the GUI
+
+
 A GUI created to for visualizing pathfinding algorithms with both weighted/unweighted nodes. Written in Python3 with tkinter.
 
 
