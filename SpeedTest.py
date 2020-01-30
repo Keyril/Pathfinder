@@ -49,4 +49,35 @@ def makeGrid(range1, range2, gridx, gridy):
             grid[i][j] = num
     return grid
 
-BruteTest()
+
+def Brute20Test():
+    d = [15, 20, 25]
+    v = [5, 10, 20, 50, 100, 500, 1000]
+    with open('Results20.csv', 'w') as csvfile:
+        filewriter = csv.writer(csvfile, delimiter=',',
+                                quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        filewriter.writerow(['Grid', 'Range', 'Avg_Accuracy', 'Lowest Accuracy', 'Avg_Faster'])
+        for i in d:
+            for j in d:
+                for r in v:
+                    sval = aval = 0
+                    amin = 100
+                    for _ in range(10):
+                        grid = makeGrid(1, r, i, j)
+                        grid[j - 1][i - 1] = 'X'
+                        Atime, Acost = aStarNums.aStar(grid, (0, 0), (j - 1, i - 1))
+                        Dtime, Dcost = dijktra.dijkstra(grid, (0, 0), (j - 1, i - 1))
+                        accuracy = getAccuracy(Acost, Dcost)
+                        speed = getSpeed(Atime, Dtime)
+                        sval += speed
+                        aval += accuracy
+                        if accuracy < amin:
+                            amin = accuracy
+                        # print(i,'x', j, ' grid: 1 - ', r, 'Range: Faster by: ', speed, '% : ', accuracy, '% accuracy')
+                    filewriter.writerow(
+                        [str(i) + 'x' + str(j), '1 - ' + str(r), str(round(aval / 10, 3)) + '%', str(amin)
+                         + '%', str(round(sval / 10, 3)) + '%'])
+    csvfile.close()
+
+# BruteTest()
+Brute20Test()

@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def Show_Acc():
-    df = pd.read_csv('Results.csv', usecols=['Grid', 'Range', 'Avg_Accuracy']).dropna()
+    df = pd.read_csv('Results20.csv', usecols=['Grid', 'Range', 'Avg_Accuracy']).dropna()
     df['Grid'] = df['Grid'].str.partition('x')[2].astype(int)
     df['Range'] = df['Range'].str.partition(' - ')[2].astype(int)
     df['Avg_Accuracy'] = df['Avg_Accuracy'].str[:-1].astype(float)
@@ -18,7 +18,7 @@ def Show_Acc():
 
 
 def Show_Lowest_Acc():
-    df = pd.read_csv('Results.csv', usecols=['Grid', 'Range', 'Lowest Accuracy']).dropna()
+    df = pd.read_csv('Results20.csv', usecols=['Grid', 'Range', 'Lowest Accuracy']).dropna()
     df['Grid'] = df['Grid'].str.partition('x')[2].astype(int)
     df['Range'] = df['Range'].str.partition(' - ')[2].astype(int)
     df['Lowest Accuracy'] = df['Lowest Accuracy'].str[:-1].astype(float)
@@ -30,7 +30,7 @@ def Show_Lowest_Acc():
 
 
 def Show_Speed():
-    df = pd.read_csv('Results.csv', usecols=['Grid', 'Range', 'Avg_Faster']).dropna()
+    df = pd.read_csv('Results20.csv', usecols=['Grid', 'Range', 'Avg_Faster']).dropna()
     df['Grid'] = df['Grid'].str.partition('x')[2].astype(int)
     df['Range'] = df['Range'].str.partition(' - ')[2].astype(int)
     df['Avg_Faster'] = df['Avg_Faster'].str[:-1].astype(float)
@@ -42,7 +42,7 @@ def Show_Speed():
 
 
 def Show_Speed_VS_Accuracy():
-    df = pd.read_csv('Results.csv', usecols=['Range', 'Avg_Accuracy', 'Avg_Faster']).dropna()
+    df = pd.read_csv('Results20.csv', usecols=['Range', 'Avg_Accuracy', 'Avg_Faster']).dropna()
     df['Range'] = df['Range'].str.partition(' - ')[2].astype(int)
     df['Avg_Accuracy'] = df['Avg_Accuracy'].str[:-1].astype(float)
     df['Avg_Faster'] = df['Avg_Faster'].str[:-1].astype(float)
@@ -54,7 +54,7 @@ def Show_Speed_VS_Accuracy():
 
 
 def Show_Speed_Grid_Accuracy():
-    df = pd.read_csv('Results.csv', usecols=['Grid', 'Avg_Accuracy', 'Avg_Faster']).dropna()
+    df = pd.read_csv('Results20.csv', usecols=['Grid', 'Avg_Accuracy', 'Avg_Faster']).dropna()
     df['Grid'] = df['Grid'].str.partition('x')[2].astype(int)
     df['Avg_Faster'] = df['Avg_Faster'].str[:-1].astype(float)
     df['Avg_Accuracy'] = df['Avg_Accuracy'].str[:-1].astype(float)
@@ -65,8 +65,12 @@ def Show_Speed_Grid_Accuracy():
     plt.show()
 
 
-# Show_Speed_VS_Accuracy()
+Show_Acc()
+Show_Lowest_Acc()
+Show_Speed()
+Show_Speed_VS_Accuracy()
 Show_Speed_Grid_Accuracy()
+
 # sns.lmplot(x="Range", y=
 # "Avg_Accuracy", data=df, fit_reg=False, hue='Grid', legend=False)
 # plt.legend(loc='lower right')
