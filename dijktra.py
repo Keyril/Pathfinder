@@ -1,5 +1,5 @@
 import sys
-import math
+import timeit
 
 def dijkstra(grid, start, end):
     finish, wall = 'X', 'W'
@@ -8,6 +8,7 @@ def dijkstra(grid, start, end):
     open_list = [[s1, s2, 0, None]]  # gridx, gridy, total val, distance to end(guessed), distance to start
     seen = []
     seen_coords = []
+    startTime = timeit.default_timer()
     while open_list:
         candidate = sys.maxsize
         node = None
@@ -35,13 +36,17 @@ def dijkstra(grid, start, end):
                     open_list.append([x1, y1, ds, current_index])
     node = findInList(seen, end[0], end[1])
     if node:
+        stopTime = timeit.default_timer()
         path = []
-        print('Dijkstra cost: ', seen[node[3]][2])
+        cost = seen[node[3]][2]
+        # print('Dijkstra cost: ', seen[node[3]][2])
+        # print('Dijkstra time: ', stopTime - startTime)
         while node[3] is not None and node[3] != -1:
             path.append([node[0], node[1]])
             node = seen[node[3]]
         path.reverse()
-        return seen_coords, path
+        return (stopTime - startTime), cost
+        # return seen_coords, path
 
 
 
